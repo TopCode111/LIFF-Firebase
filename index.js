@@ -25,6 +25,21 @@ let guestbookListener = null;
 
 let db, auth;
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: 'AIzaSyDS8Xijtr0CfRImylIlTXj1dmM_XUaySLE',
+  authDomain: 'liff-firebase-734d5.firebaseapp.com',
+  projectId: 'liff-firebase-734d5',
+  storageBucket: 'liff-firebase-734d5.appspot.com',
+  messagingSenderId: '796565586620',
+  appId: '1:796565586620:web:8bbc3aa062646951f906b9',
+  measurementId: 'G-E71X0WPQKD',
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
+
 async function main() {
   // Add Firebase project configuration object here
   const firebaseConfig = {};
