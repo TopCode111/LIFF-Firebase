@@ -4,7 +4,12 @@ import './style.css';
 import { initializeApp } from 'firebase/app';
 
 // Add the Firebase products and methods that you want to use
-import {} from 'firebase/auth';
+import {
+  getAuth,
+  EmailAuthProvider,
+  signOut,
+  onAuthStateChanged,
+} from 'firebase/auth';
 import {} from 'firebase/firestore';
 
 import * as firebaseui from 'firebaseui';
@@ -39,13 +44,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
-
+auth = getAuth();
 async function main() {
-  // Add Firebase project configuration object here
-  const firebaseConfig = {};
-
-  // initializeApp(firebaseConfig);
-
   // FirebaseUI config
   const uiConfig = {
     credentialHelper: firebaseui.auth.CredentialHelper.NONE,
@@ -61,7 +61,27 @@ async function main() {
       },
     },
   };
+  // Initialize the FirebaseUI widget using Firebase
+  const ui = new firebaseui.auth.AuthUI(auth);
 
-  // const ui = new firebaseui.auth.AuthUI(auth);
+  // Listen to RSVP button clicks
+  startRsvpButton.addEventListener('click', () => {
+    if (auth.currentUser) {
+      // User is signed in; allows user to sign out
+      signOut(auth);
+    } else {
+      // No user is signed in; allows user to sign in
+      ui.start('#firebaseui-auth-container', uiConfig);
+    }
+  });
+
+  // Listen to the current Auth state
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      startRsvpButton.textContent = 'LOGOUT';
+    } else {
+      startRsvpButton.textContent = 'RSVP';
+    }
+  });
 }
 main();
