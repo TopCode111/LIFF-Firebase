@@ -33,7 +33,7 @@ let db, auth;
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyDS8Xijtr0CfRImylIlTXj1dmM_XUaySLE',
+  apiKey: '',
   authDomain: 'liff-firebase-734d5.firebaseapp.com',
   projectId: 'liff-firebase-734d5',
   storageBucket: 'liff-firebase-734d5.appspot.com',
